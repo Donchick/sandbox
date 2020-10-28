@@ -13,7 +13,7 @@ app.get("/", function(req, res) {
 
 app.get("/test", (req, res) => {
   if (req.query['fail']) {
-    res.status(500).send("server failure");
+    throw new Error('server failure');
   } else {
     res.send("OK");
   }
