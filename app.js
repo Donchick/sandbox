@@ -11,6 +11,14 @@ app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname+'/index.html'));
 });
 
+app.get("/test", (req, res) => {
+  if (req.query['fail']) {
+    res.status(500).send("server failure");
+  } else {
+    res.send("OK");
+  }
+});
+
 app.listen(PORT, function () {
   console.log(`Express server listening on port ${PORT}`)
 });
