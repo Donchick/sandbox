@@ -7,7 +7,7 @@ const {PubSub} = require('@google-cloud/pubsub');
 const PORT = process.env.PORT || 5001;
 
 const app = express();
-const pubsub = new PubSub({projectId: "white-inscriber-293222", keyFilename: "white-inscriber-293222-43c182cef4f1.json"});
+// const pubsub = new PubSub({projectId: "white-inscriber-293222", keyFilename: "white-inscriber-293222-43c182cef4f1.json"});
 const defaultTopic = pubsub.topic("projects/white-inscriber-293222/topics/signup-notificator");
 
 // parse application/x-www-form-urlencoded
@@ -22,10 +22,10 @@ app.get("/signup", (req, res) => {
   res.sendFile(path.join(__dirname+'/signup.html'));
 });
 
-app.post("/signup", async (req, res) => {
-  await defaultTopic.publish(Buffer.from(JSON.stringify(req.body)));
-  res.send("OK");
-});
+// app.post("/signup", async (req, res) => {
+//   await defaultTopic.publish(Buffer.from(JSON.stringify(req.body)));
+//   res.send("OK");
+// });
 
 app.get("/test", (req, res) => {
   if (req.query['fail']) {
