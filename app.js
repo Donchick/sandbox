@@ -7,6 +7,8 @@ const {PubSub} = require('@google-cloud/pubsub');
 const PORT = process.env.PORT || 5001;
 
 const app = express();
+const {Datastore} = require('@google-cloud/datastore');
+const datastore = new Datastore();
 const pubsub = new PubSub({projectId: "white-inscriber-293222"});
 const defaultTopic = pubsub.topic("projects/white-inscriber-293222/topics/signup-notificator");
 
