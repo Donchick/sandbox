@@ -27,6 +27,12 @@ app.post("/signup", async (req, res) => {
   res.send("OK");
 });
 
+app.get('/subscribers', async (req, res) => {
+  const [subscribers] = await datastore.runQuery(datastore.createQuery('subscriber'));
+
+  res.send(subscribers.map(({email, login}) => `${login} - ${email}`).join('<br>'));
+});
+
 app.get("/test", (req, res) => {
   if (req.query['fail']) {
     throw new Error('server failure');
